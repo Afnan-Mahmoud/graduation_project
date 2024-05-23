@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:graduation_project/Screens/Pages/Start%20Page/start_page_cubit.dart';
 import 'package:provider/provider.dart';
-import '../../../../Utilites/colors.dart';
 import '../../../Provider/provider.dart';
-import '../Start Page/startpage.dart';
 import 'info_Tips_page/Protect _skin.dart';
 import 'info_Tips_page/health_nutrition.dart';
 import 'info_Tips_page/skin_care_tips.dart';
@@ -12,6 +12,7 @@ import 'info_Tips_page/skin_type.dart';
 
 
 class Skin_Tips extends StatelessWidget {
+  static const String routeName="SkinTips";
   const Skin_Tips({super.key});
 
 
@@ -48,16 +49,15 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
             centerTitle: true,
             title: const Text("Tips"),
-            leading: IconButton(
-              onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const StartPage()));
-                    Navigator.popUntil(context, ModalRoute.withName('/'));
-              },
+            leading: BlocBuilder<StartPageCubit,StartPageState>(builder: (context, state) {
+              return IconButton(
+                onPressed: (){
+                  StartPageCubit.get(context).changeIndex(1);
+                },
 
-              icon: const Icon(Icons.keyboard_arrow_left),
-            ),
+                icon: const Icon(Icons.keyboard_arrow_left),
+              );
+            },),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(
                   bottom: Radius.circular(20),
@@ -80,10 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   child: InkWell(
                       onTap: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const Skin_Type()),
-                        );
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Skin_Type(),));
                         },
                     child: Column(
                       children: [
@@ -109,10 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   child: InkWell(
                       onTap: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const Skin_Routine()),
-                        );
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Skin_Routine(),));
                       },
                       child: Column(
                         children: [
@@ -139,10 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   child: InkWell(
                       onTap: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const Health_Nutrition()),
-                        );
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Health_Nutrition(),));
                       },
                       child: Column(
                         children: [
@@ -169,10 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   child: InkWell(
                       onTap: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const Skin_Care_Tips()),
-                        );
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Skin_Care_Tips(),));
                       },
                       child: Column(
                         children: [
@@ -198,10 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   child: InkWell(
                       onTap: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const Protect_Skin()),
-                        );
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Protect_Skin(),));
                       },
 
                       child: Column(

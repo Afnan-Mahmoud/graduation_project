@@ -7,6 +7,7 @@ import '../Tips_Screen.dart';
 
 
 class Skin_Care_Tips extends StatelessWidget {
+  static const String routeName="SkinCareTips";
   const Skin_Care_Tips({super.key});
 
   // This widget is the root of your application.
@@ -44,9 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: const Text("Tips"),
             leading: IconButton(
               onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Skin_Tips()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Skin_Tips(),));
               },
               icon: const Icon(Icons.keyboard_arrow_left,),
             ),

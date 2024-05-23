@@ -64,6 +64,7 @@ dependencies:
   image_loading_animation: ^0.0.1
   flutter_lints: ^2.0.0
   api_request: ^1.0.9
+  flutter_bloc: ^8.1.5
 
 
 

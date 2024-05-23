@@ -70,7 +70,7 @@ class _IntroductionScreensState extends State<IntroductionScreens> {
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginScreen()));
+                    MaterialPageRoute(builder: (context) =>  LoginScreen()));
               },
               child: Text("skip", style: GoogleFonts.inter(
                 color: Colors.white,
@@ -82,7 +82,7 @@ class _IntroductionScreensState extends State<IntroductionScreens> {
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginScreen()));
+                    MaterialPageRoute(builder: (context) =>  LoginScreen()));
               },
 
               child: Text("skip", style: GoogleFonts.inter(
