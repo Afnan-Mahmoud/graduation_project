@@ -43,9 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
             title: const Text("About Disease"),
             leading: IconButton(
               onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const StartPage()));
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  StartPage()),(route) => false,);
               },
               icon: const Icon(Icons.keyboard_arrow_left)
             ),

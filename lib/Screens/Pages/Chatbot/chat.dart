@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/index.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
-import '../Home/HomeScreen.dart';
+import '../Start Page/start_page_cubit.dart';
 import '../Start Page/startpage.dart';
 import 'chat_bubels.dart';
 import 'chat_bubels2.dart';
@@ -97,41 +97,40 @@ class _ChatPageState extends State<ChatPage> {
       appBar:AppBar(
         elevation: 0,
         flexibleSpace: SafeArea(
-          child: Builder(
-            builder: (BuildContext context) {
-              return Container(
-                padding: const EdgeInsets.only(right: 16),
-                child: Row(
-                  children: <Widget>[
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, StartPage.routeName);
-                      },
-                      icon: const Icon(Icons.keyboard_arrow_left),
+          child: BlocBuilder<StartPageCubit,StartPageState>(builder:  (context, state) {
+            return Container(
+              padding: const EdgeInsets.only(right: 16),
+              child: Row(
+                children: <Widget>[
+                  IconButton(
+                    onPressed: () {
+                      StartPageCubit.get(context).changeBottomNavigationCheck(true);
+                      StartPageCubit.get(context).changeIndex(1);
+                    },
+                    icon: const Icon(Icons.keyboard_arrow_left),
+                  ),
+                  const SizedBox(width: 2,),
+                  const CircleAvatar(
+                    backgroundImage: AssetImage("lib/assets/images/chat.png"),
+                    maxRadius: 20,
+                  ),
+                  const SizedBox(width: 12,),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text("Kriss Benwat", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),),
+                        const SizedBox(height: 6,),
+                        Text("Online", style: TextStyle(color: Colors.grey.shade600, fontSize: 13),),
+                      ],
                     ),
-                    const SizedBox(width: 2,),
-                    const CircleAvatar(
-                      backgroundImage: AssetImage("lib/assets/images/chat.png"),
-                      maxRadius: 20,
-                    ),
-                    const SizedBox(width: 12,),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const Text("Kriss Benwat", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),),
-                          const SizedBox(height: 6,),
-                          Text("Online", style: TextStyle(color: Colors.grey.shade600, fontSize: 13),),
-                        ],
-                      ),
-                    ),
-                    const Icon(Icons.settings_outlined, color: Colors.black54,),
-                  ],
-                ),
-              );
-            },
-          ),
+                  ),
+                  const Icon(Icons.settings_outlined, color: Colors.black54,),
+                ],
+              ),
+            );
+          },),
         ),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),

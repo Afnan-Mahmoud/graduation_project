@@ -3,12 +3,15 @@ import '../../../../../Utilites/colors.dart';
 
 class searchBar extends StatefulWidget {
   final Function(String) onSearch;
-  searchBar({required this.onSearch});
+  final FocusNode searchFocusNode;
+  searchBar({required this.onSearch, required this.searchFocusNode});
   @override
   State<searchBar> createState() => _searchBarState();
 }
 
 class _searchBarState extends State<searchBar> {
+  final TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,6 +26,8 @@ class _searchBarState extends State<searchBar> {
         child: Padding(
           padding: const EdgeInsets.all(1.0),
           child: TextField(
+            controller: _controller,
+            focusNode: widget.searchFocusNode,
             onChanged: widget.onSearch,
             decoration: InputDecoration(
               hintText: "Search",
@@ -41,72 +46,6 @@ class _searchBarState extends State<searchBar> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class SearchD extends StatefulWidget {
-  @override
-  State<SearchD> createState() => _SearchDState();
-}
-
-class _SearchDState extends State<SearchD> {
-  List<String> searchTerms = [
-    "Actinic keratoses",
-    "Basal cell carcinoma",
-    "Benign keratosis-like lesions",
-    "Dermatofibroma",
-    "Melanocytic nevi",
-    "Melanoma",
-    "Vascular lesions",
-  ];
-
-  List<String> filteredSearchTerms = [];
-
-  @override
-  void initState() {
-    filteredSearchTerms = searchTerms;
-    super.initState();
-  }
-
-  void filterSearchResults(String query) {
-    List<String> dummySearchList = [];
-    dummySearchList.addAll(searchTerms);
-    if (query.isNotEmpty) {
-      List<String> dummyListData = [];
-      dummySearchList.forEach((item) {
-        if (item.toLowerCase().contains(query.toLowerCase())) {
-          dummyListData.add(item);
-        }
-      });
-      setState(() {
-        filteredSearchTerms.clear();
-        filteredSearchTerms.addAll(dummyListData);
-      });
-    } else {
-      setState(() {
-        filteredSearchTerms.clear();
-        filteredSearchTerms.addAll(searchTerms);
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        searchBar(onSearch: filterSearchResults),
-        Expanded(
-          child: ListView.builder(
-            itemCount: filteredSearchTerms.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(filteredSearchTerms[index]),
-              );
-            },
-          ),
-        ),
-      ],
     );
   }
 }

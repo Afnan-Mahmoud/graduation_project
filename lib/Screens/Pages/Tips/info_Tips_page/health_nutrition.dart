@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../Provider/provider.dart';
+import '../../Start Page/startpage.dart';
 import '../Tips_Screen.dart';
 
 
 
 class Health_Nutrition extends StatelessWidget {
+  static const String routeName="HealthNutrition";
   const Health_Nutrition({super.key});
 
   // This widget is the root of your application.
@@ -43,9 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: const Text("Tips"),
             leading: IconButton(
               onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Skin_Tips()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Skin_Tips(),));
               },
               icon: const Icon(Icons.keyboard_arrow_left,),
             ),
