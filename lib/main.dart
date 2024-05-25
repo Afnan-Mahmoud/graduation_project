@@ -3,6 +3,7 @@ import 'package:graduation_project/Screens/Pages/Start%20Page/startpage.dart';
 import 'package:graduation_project/Screens/Pages/Tips/Tips_Screen.dart';
 import 'Provider/provider.dart';
 import 'Screens/Pages/Chatbot/chat.dart';
+import 'Screens/Pages/Diseases result/resultpage.dart';
 import 'Screens/Pages/Splash/splsh_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -31,9 +32,11 @@ class DermEase extends StatelessWidget{
           SplashScreen.routeName:(context)=>SplashScreen(),
           StartPage.routeName:(context)=>StartPage(),
           Skin_Tips.routeName:(context)=>Skin_Tips(),
+          ChatPage.routeName:(context)=>ChatPage(),
+
           // Result.routeName:(context)=>Result(),
         },// Use themeMode to switch between light and dark mode
-        initialRoute: StartPage.routeName,
+        initialRoute: SplashScreen.routeName,
 
       );
       },

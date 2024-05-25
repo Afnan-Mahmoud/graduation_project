@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import '../Start Page/start_page_cubit.dart';
-import '../Start Page/startpage.dart';
 import 'chat_bubels.dart';
 import 'chat_bubels2.dart';
 
 class ChatPage extends StatefulWidget {
   static const String id = 'ChatPage';
+  static const String routeName="ChatPage";
 
   const ChatPage({super.key});
 
@@ -105,7 +105,6 @@ class _ChatPageState extends State<ChatPage> {
                   IconButton(
                     onPressed: () {
                       StartPageCubit.get(context).changeBottomNavigationCheck(true);
-                      StartPageCubit.get(context).changeIndex(1);
                     },
                     icon: const Icon(Icons.keyboard_arrow_left),
                   ),
