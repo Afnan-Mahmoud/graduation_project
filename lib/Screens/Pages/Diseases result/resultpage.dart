@@ -1,32 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'dart:io';
 import '../Start Page/startpage.dart';
 
 class Result extends StatefulWidget {
-  final String responseData;
+  static const String routeName="Result";
+  final Map<String, dynamic> result;
   final File? imageFile;
+  final bool isLoading;
 
-  const Result({Key? key, required this.responseData, required this.imageFile}) : super(key: key);
+  const Result({super.key, required this.result, this.imageFile, this.isLoading = true});
 
   @override
-  State<Result> createState() => _ResultState();
+  _ResultState createState() => _ResultState();
 }
 
 class _ResultState extends State<Result> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Result',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.transparent),
+        useMaterial3: true,
+      ),
+      home: MyHomePage(
+        title: 'Result',
+        result: widget.result,
+        imageFile: widget.imageFile,
+        isLoading: widget.isLoading,
+      ),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({
+    super.key,
+    required this.title,
+    required this.result,
+    this.imageFile,
+    this.isLoading = true,
+  });
+
+  final String title;
+  final Map<String, dynamic> result;
+  final File? imageFile;
+  final bool isLoading;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   late bool loading;
-  late String resultData;
+  late Map<String, dynamic> resultData;
 
   @override
   void initState() {
     super.initState();
-    loading = true;
-    resultData = widget.responseData; // عرض البيانات المبدئية إذا كانت موجودة
-    if (resultData.isEmpty) {
-      fetchDataFromServer();
-    } else {
-      loading = false;
-    }
+    loading = widget.isLoading;
+    resultData = widget.result;
   }
 
   @override
@@ -46,7 +80,7 @@ class _ResultState extends State<Result> {
         ),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(20),
+            bottom: Radius.circular(30),
           ),
         ),
       ),
@@ -60,46 +94,59 @@ class _ResultState extends State<Result> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 40.0, bottom: 9.0),
-              child: Center(
-                child: Text(
-                  resultData.isNotEmpty ? resultData : 'No Data Available',
-                  textScaleFactor: 1.5,
-                ),
+            padding: const EdgeInsets.only(top: 40.0, bottom: 9.0, left: 10),
+            child: Center(
+              child: Text(
+                ' ${widget.result['disease'] == 'Unknown' ? 'Unknown disease' : 'You have an ${widget.result['disease']}'}',
+                textScaleFactor: 1.5,
               ),
             ),
+          ),
             if (widget.imageFile != null)
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Image.file(widget.imageFile!),
               ),
+            Padding(
+              padding: const EdgeInsets.only(top: 30.0, bottom: 9.0, left: 15,right: 5),
+              child: Center(
+                child: Text(
+                 '${widget.result['description']}',
+                  textScaleFactor: 1.1,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0, bottom: 9.0),
+              child: Center(
+                child: TextButton(
+                  onPressed: () {
+
+                  },
+                  child: Text(
+                    'Know more...',
+                    style: TextStyle(
+                      color: Color(0xff427d9d), // Text color
+                      fontSize: 15, // Text size
+                    ),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Color(0x96c5c1c1)), // Button background color
+                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                      EdgeInsets.symmetric(horizontal: 15, vertical: 10), // Padding distribution
+                    ),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30), // Border radius
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
-  }
-
-  void fetchDataFromServer() async {
-    try {
-      final response = await http.get(Uri.parse('https://postman-echo.com/get?foo1=bar1&foo2=bar2'));
-      if (response.statusCode == 200) {
-        setState(() {
-          resultData = response.body;
-          loading = false;
-        });
-      } else {
-        // Handle error response
-        print('Failed connection with status code: ${response.statusCode}');
-        setState(() {
-          loading = false;
-        });
-      }
-    } catch (e) {
-      // Handle connection error
-      print('Failed connection with error: $e');
-      setState(() {
-        loading = false;
-      });
-    }
   }
 }

@@ -84,8 +84,8 @@ class _ChatPageState extends State<ChatPage> {
 
     });
     // Call API to get response
-     String response = await getApiResponse(message);
-      setState(() {
+    String response = await getApiResponse(message);
+    setState(() {
       messages.add(response);
     });
     // You can also send the message to your API here if needed
@@ -137,24 +137,24 @@ class _ChatPageState extends State<ChatPage> {
         ),
       ),
       body: Column(
-      children: [
-      Expanded(
-    child: ListView.builder(
-    itemCount: messages.length+messages2.length,
-    itemBuilder: (context, index) {
-    if (index % 2 == 0) {
-    // User's message
-    return ChatBubble2(message2: messages2[index ~/ 2]);
-    } else {
-    // Bot's response
-    return ChatBubble(message: messages[index ~/ 2]);
-    }
-    },
-    ),
-    ),
-    _buildInputField(),
-    ],
-    ),
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: messages.length+messages2.length,
+              itemBuilder: (context, index) {
+                if (index % 2 == 0) {
+                  // User's message
+                  return ChatBubble2(message2: messages2[index ~/ 2]);
+                } else {
+                  // Bot's response
+                  return ChatBubble(message: messages[index ~/ 2]);
+                }
+              },
+            ),
+          ),
+          _buildInputField(),
+        ],
+      ),
     );
   }
 

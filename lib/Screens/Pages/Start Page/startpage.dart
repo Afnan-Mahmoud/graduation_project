@@ -9,6 +9,8 @@ import '../Home/HomeScreen.dart';
 import '../Profile/personalpage.dart';
 import '../Tips/Tips_Screen.dart';
 
+
+
 class StartPage extends StatefulWidget {
   static CurvedNavigationBarState? currentState;
   static const String routeName="StartPage";
@@ -35,57 +37,57 @@ class _StartPageState extends State<StartPage> {
       ChatPage(),
     ];
     return BlocProvider(create: (context) => StartPageCubit(),child:
-      BlocBuilder<StartPageCubit,StartPageState>(builder: (context, state) {
-        return Scaffold(
-          // Package Of NavigationBar Take Curved shape
-            resizeToAvoidBottomInset: false,
-            bottomNavigationBar: StartPageCubit.get(context).bottomNavigationCheck
-                ?CurvedNavigationBar(
-              key: _bottomNavigationKey,
-              // When This page OPen It Will Open Automatically On Your Homepage
-              index: StartPageCubit.get(context).index,
-              items: const [
-                CurvedNavigationBarItem(
-                  child: Icon(
-                    Icons.tips_and_updates,
-                    size: 20,
-                    color: ToolsUtilites.primarycolor,
-                  ),
-                  label: 'Tips',
+    BlocBuilder<StartPageCubit,StartPageState>(builder: (context, state) {
+      return Scaffold(
+        // Package Of NavigationBar Take Curved shape
+          resizeToAvoidBottomInset: false,
+          bottomNavigationBar: StartPageCubit.get(context).bottomNavigationCheck
+              ?CurvedNavigationBar(
+            key: _bottomNavigationKey,
+            // When This page OPen It Will Open Automatically On Your Homepage
+            index: StartPageCubit.get(context).index,
+            items: const [
+              CurvedNavigationBarItem(
+                child: Icon(
+                  Icons.tips_and_updates,
+                  size: 20,
+                  color: ToolsUtilites.primarycolor,
                 ),
+                label: 'Tips',
+              ),
 
-                CurvedNavigationBarItem(
-                  child: Icon(Icons.home_outlined,
-                      size: 20, color:ToolsUtilites.primarycolor),
-                  label: 'Home',
-                ),
-                CurvedNavigationBarItem(
-                  child: Icon(Icons.perm_identity,
-                      size: 20, color: ToolsUtilites.primarycolor),
-                  label: 'Personal',
-                ),
-                CurvedNavigationBarItem(
-                  child: Icon(Icons.chat, size: 20, color: ToolsUtilites.primarycolor),
-                  label: 'Chat',
-                ),
-              ],
-              // The Properties Of NavigationBar
-              color: Color(0x96c5c1c1),
-              buttonBackgroundColor:const Color(0xffBED7DC),
-              backgroundColor: Colors.transparent,
-              animationCurve: Curves.easeInOut,
-              animationDuration: const Duration(milliseconds: 300),
-              onTap: (index) {
-                setState(() {
-                  StartPageCubit.get(context).changeIndex(index);
-                  if (index == 3) {
-                    // Hide the navigation bar when settings icon is clicked
-                    StartPageCubit.get(context).changeBottomNavigationCheck(false);
-                  }
-                });
-              },
-            ): null,
-            body: tabs[StartPageCubit.get(context).index]);
-      },),);
+              CurvedNavigationBarItem(
+                child: Icon(Icons.home_outlined,
+                    size: 20, color:ToolsUtilites.primarycolor),
+                label: 'Home',
+              ),
+              CurvedNavigationBarItem(
+                child: Icon(Icons.perm_identity,
+                    size: 20, color: ToolsUtilites.primarycolor),
+                label: 'Personal',
+              ),
+              CurvedNavigationBarItem(
+                child: Icon(Icons.chat, size: 20, color: ToolsUtilites.primarycolor),
+                label: 'Chat',
+              ),
+            ],
+            // The Properties Of NavigationBar
+            color: Color(0x96c5c1c1),
+            buttonBackgroundColor:const Color(0xffBED7DC),
+            backgroundColor: Colors.transparent,
+            animationCurve: Curves.easeInOut,
+            animationDuration: const Duration(milliseconds: 300),
+            onTap: (index) {
+              setState(() {
+                StartPageCubit.get(context).changeIndex(index);
+                if (index == 3) {
+                  // Hide the navigation bar when settings icon is clicked
+                  StartPageCubit.get(context).changeBottomNavigationCheck(false);
+                }
+              });
+            },
+          ): null,
+          body: tabs[StartPageCubit.get(context).index]);
+    },),);
   }
 }
