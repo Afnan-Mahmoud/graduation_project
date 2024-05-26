@@ -11,6 +11,7 @@ import '../../Diseases result/resultpage.dart';
 File? globalImage;
 
 class CameraView extends StatefulWidget {
+
   const CameraView({Key? key}) : super(key: key);
 
   @override

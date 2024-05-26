@@ -3,6 +3,7 @@ import 'dart:io';
 import '../Start Page/startpage.dart';
 
 class Result extends StatefulWidget {
+  static const String routeName="Result";
   final Map<String, dynamic> result;
   final File? imageFile;
   final bool isLoading;
@@ -119,7 +120,9 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.only(top: 16.0, bottom: 9.0),
               child: Center(
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+
+                  },
                   child: Text(
                     'Know more...',
                     style: TextStyle(
