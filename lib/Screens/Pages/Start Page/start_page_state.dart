@@ -8,5 +8,3 @@ class ChangeIndexSuc extends StartPageState {}
 class ChangeBottomNavigationCheckSuc extends StartPageState {}
 class GetPicSuc extends StartPageState {}
 class CancelPicImageSuc extends StartPageState {}
-class ProfileGetDataFromFirebaseSuccsesState extends StartPageState{}
-class SetProfileGetDataFromFirebaseLoadingState extends StartPageState{}
