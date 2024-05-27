@@ -11,7 +11,6 @@ import '../../Diseases result/resultpage.dart';
 File? globalImage;
 
 class CameraView extends StatefulWidget {
-
   const CameraView({Key? key}) : super(key: key);
 
   @override
@@ -95,9 +94,14 @@ class _CameraViewState extends State<CameraView> {
     });
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => Result(imageFile: imageFile, result: {}, isLoading: true)),
+      MaterialPageRoute(builder: (context) => Result(imageFile: imageFile, result: {'disease': 'Unknown', 'description': 'An unidentified disease. We do not have any data to show you'}, isLoading: true)),
     );
-    await uploadImage();
+
+    await Future.delayed(const Duration(seconds: 2));
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => Result(imageFile: imageFile, result: {'disease': 'Unknown', 'description': 'An unidentified disease. We do not have any data to show you'}, isLoading: false)),
+    );
   }
 
   Future<void> uploadImage() async {
