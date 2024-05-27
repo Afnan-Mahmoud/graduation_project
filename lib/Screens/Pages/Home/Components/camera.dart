@@ -11,6 +11,7 @@ import '../../Diseases result/resultpage.dart';
 File? globalImage;
 
 class CameraView extends StatefulWidget {
+
   const CameraView({Key? key}) : super(key: key);
 
   @override
@@ -20,7 +21,6 @@ class CameraView extends StatefulWidget {
 class _CameraViewState extends State<CameraView> {
   Uint8List? _image;
   File? imageFile;
-  bool showSpinner = false;
 
   Future<void> _showOption(BuildContext context) async {
     await showDialog(
@@ -47,7 +47,10 @@ class _CameraViewState extends State<CameraView> {
                     color: ToolsUtilites.primarycolor,
                   ),
                 ),
-                onTap: () => _pickImageFromGallery(),
+                onTap: () {
+                  Navigator.pop(context); // Close the dialog
+                  _pickImageFromGallery();
+                },
               ),
               ListTile(
                 leading: const Icon(Icons.camera_alt_outlined, color: ToolsUtilites.primarycolor),
@@ -59,7 +62,10 @@ class _CameraViewState extends State<CameraView> {
                     color: ToolsUtilites.primarycolor,
                   ),
                 ),
-                onTap: () => _pickImageFromCamera(),
+                onTap: () {
+                  Navigator.pop(context); // Close the dialog
+                  _pickImageFromCamera();
+                },
               ),
             ],
           ),
@@ -74,8 +80,11 @@ class _CameraViewState extends State<CameraView> {
     setState(() {
       imageFile = File(returnImage.path);
     });
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Result(imageFile: imageFile, result: {}, isLoading: true)),
+    );
     await uploadImage();
-
   }
 
   Future<void> _pickImageFromCamera() async {
@@ -84,42 +93,42 @@ class _CameraViewState extends State<CameraView> {
     setState(() {
       imageFile = File(returnImage.path);
     });
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Result(imageFile: imageFile, result: {}, isLoading: true)),
+    );
     await uploadImage();
   }
 
   Future<void> uploadImage() async {
     if (imageFile == null) return;
 
-    setState(() {
-      showSpinner = true;
-    });
-
     try {
-      List<int> imageBytes = imageFile!.readAsBytesSync();
+      List<int> imageBytes = (await imageFile?.readAsBytes()) as List<int>;
       String base64Image = base64Encode(imageBytes);
 
-      var uri = Uri.parse(' https://c211-102-184-20-81.ngrok-free.app/predict');
       var response = await http.post(
-        uri,
-        headers: {'Content-Type': 'application/json'},
+        Uri.parse('https://6e35-20-200-120-107.ngrok-free.app/predict'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: jsonEncode({'image_data': base64Image}),
       );
-      if (response.statusCode == 200) {
-        var decodedData = jsonDecode(response.body);
-        Navigator.push(
 
-          context,
-          MaterialPageRoute(builder: (context) => Result(responseData: decodedData.toString(), imageFile: imageFile)),
-        );
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        if (data.containsKey('result')) {
+          Map<String, dynamic> result = data['result'];
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => Result(imageFile: imageFile, result: result, isLoading: false)),
+          );
+        }
       } else {
         _showErrorDialog('Failed to upload image. Status code: ${response.statusCode}');
       }
     } catch (e) {
       _showErrorDialog('An error occurred: $e');
-    } finally {
-      setState(() {
-        showSpinner = false;
-      });
     }
   }
 
@@ -168,10 +177,6 @@ class _CameraViewState extends State<CameraView> {
             ),
           ],
         ),
-        if (showSpinner)
-          Center(
-            child: CircularProgressIndicator(),
-          ),
       ],
     );
   }

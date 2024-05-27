@@ -58,8 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Column(
-                    children: [
+                   Column(
+                    children: const [
                       Padding(
                         padding:
                         EdgeInsets.only(top: 24.0, bottom: 15.0, left: 20),

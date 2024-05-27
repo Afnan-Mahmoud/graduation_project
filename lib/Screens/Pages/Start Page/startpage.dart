@@ -34,7 +34,7 @@ class _StartPageState extends State<StartPage> {
       const PersonalPage(),
       ChatPage(),
     ];
-    return BlocProvider(create: (context) => StartPageCubit(),child:
+    return BlocProvider(create: (context) => StartPageCubit()..getProfileDataFromFirebase(),child:
       BlocBuilder<StartPageCubit,StartPageState>(builder: (context, state) {
         return Scaffold(
           // Package Of NavigationBar Take Curved shape

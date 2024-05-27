@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppProvider with ChangeNotifier {
+  static AppProvider get(context)=>Provider.of<AppProvider>(context,listen: false);
   bool _isDarkModeEnabled = false;
   bool get isDarkModeEnabled => _isDarkModeEnabled;
   AppProvider() {

@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/Screens/Pages/Diseases%20result/resultpage.dart';
+import 'package:graduation_project/Screens/Pages/Register/Login/login%20screen.dart';
+import 'package:graduation_project/Screens/Pages/Register/SignUp/SetProfile/SetProfileScreen.dart';
+import 'package:graduation_project/Screens/Pages/Register/SignUp/Signup.dart';
 import 'package:graduation_project/Screens/Pages/Start%20Page/startpage.dart';
 import 'package:graduation_project/Screens/Pages/Tips/Tips_Screen.dart';
 import 'Provider/provider.dart';
 import 'Screens/Pages/Chatbot/chat.dart';
 import 'Screens/Pages/Splash/splsh_screen.dart';
 import 'package:provider/provider.dart';
+  import 'package:firebase_core/firebase_core.dart';
+  import 'firebase_options.dart';
 
-void main(){
-
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(DermEase());
 }
 class DermEase extends StatelessWidget{
@@ -31,15 +40,15 @@ class DermEase extends StatelessWidget{
           SplashScreen.routeName:(context)=>SplashScreen(),
           StartPage.routeName:(context)=>StartPage(),
           Skin_Tips.routeName:(context)=>Skin_Tips(),
+          LoginScreen.routeName:(context)=>LoginScreen(),
+          SignupScreen.routeName:(context)=>SignupScreen(),
+          SetProfileScreen.routeName:(context)=>SetProfileScreen(),
           // Result.routeName:(context)=>Result(),
         },// Use themeMode to switch between light and dark mode
-        initialRoute: StartPage.routeName,
-
+        initialRoute: SplashScreen.routeName,
       );
       },
-
     ));
-
 
 
 

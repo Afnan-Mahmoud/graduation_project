@@ -99,6 +99,7 @@ class _ChatPageState extends State<ChatPage> {
         flexibleSpace: SafeArea(
           child: BlocBuilder<StartPageCubit,StartPageState>(builder:  (context, state) {
             return Container(
+              color: Colors.white,
               padding: const EdgeInsets.only(right: 16),
               child: Row(
                 children: <Widget>[

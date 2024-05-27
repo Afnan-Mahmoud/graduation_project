@@ -47,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          elevation: 0,
             centerTitle: true,
             title: const Text("Tips"),
             leading: BlocBuilder<StartPageCubit,StartPageState>(builder: (context, state) {

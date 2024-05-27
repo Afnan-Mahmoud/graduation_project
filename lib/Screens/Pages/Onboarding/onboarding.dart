@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:graduation_project/Screens/Pages/Register/Login/login%20screen.dart';
+import 'package:graduation_project/Utilites/colors.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import '../../../../Utilites/colors.dart';
-import '../Login & Register/login screen.dart';
 
 class IntroductionScreens extends StatefulWidget {
   const IntroductionScreens({Key? key}) : super(key: key);

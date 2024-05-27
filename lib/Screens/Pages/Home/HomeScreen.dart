@@ -19,12 +19,14 @@ import 'Components/Drawer/drawer.dart';
 
 bool navIsTrue = true;
 
+
 class Homepage extends StatefulWidget {
   static const String routeName = "Homepage";
   const Homepage({Key? key}) : super(key: key);
   @override
   _HomepageState createState() => _HomepageState();
 }
+
 
 class _HomepageState extends State<Homepage> {
   late GlobalKey<ScaffoldState> _scaffoldKey;
@@ -100,6 +102,7 @@ class _HomepageState extends State<Homepage> {
         MaterialPageRoute(builder: (context) => Melanoma_H()),
       );
     }
+
     if (item == "Vascular lesions") {
       Navigator.push(
         context,
@@ -187,17 +190,22 @@ class _HomepageState extends State<Homepage> {
                   },
                   child: _searchFocusNode.hasFocus && filteredItems.isNotEmpty
                       ? Container(
-                    decoration:  BoxDecoration(
-                        color: Color(0xffffffff),
-                        border:  Border.all(
-                          color: Colors.white,
-                        ),
-                        borderRadius:  const BorderRadius.only(
-                          topLeft:  Radius.circular(30.0),
-                          topRight:  Radius.circular(30.0),
-                          bottomLeft:  Radius.circular(30.0),
-                          bottomRight:  Radius.circular(30.0),
-                        )),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.white
+                          : Colors.black87,
+                      border: Border.all(
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.white
+                            : Colors.black87,
+                      ),
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(30.0),
+                        topRight: Radius.circular(30.0),
+                        bottomLeft: Radius.circular(30.0),
+                        bottomRight: Radius.circular(30.0),
+                      ),
+                    ),
                     child: ListView.builder(
                       itemCount: filteredItems.length,
                       shrinkWrap: true,
