@@ -39,15 +39,22 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          elevation: 0,
+            backgroundColor: AppProvider.get(context).isDarkModeEnabled
+                ?null:Colors.white,
             centerTitle: true,
-            title: const Text("About Disease"),
+            title:  Text("About Disease",style: TextStyle(
+              color: AppProvider.get(context).isDarkModeEnabled
+                  ?null:Colors.black
+            )),
             leading: IconButton(
               onPressed: (){
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) =>  StartPage()),(route) => false,);
               },
-              icon: const Icon(Icons.keyboard_arrow_left,),
+              icon:  Icon(Icons.keyboard_arrow_left,color: AppProvider.get(context).isDarkModeEnabled
+                  ?null:Colors.black,),
             ),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(

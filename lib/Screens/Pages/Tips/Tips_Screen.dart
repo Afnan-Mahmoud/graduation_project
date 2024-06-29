@@ -47,16 +47,23 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: AppProvider.get(context).isDarkModeEnabled
+              ?null:Colors.white,
           elevation: 0,
             centerTitle: true,
-            title: const Text("Tips"),
+            title:  Text("Tips",
+            style: TextStyle(
+              color: AppProvider.get(context).isDarkModeEnabled
+                  ?null:Colors.black
+            )),
             leading: BlocBuilder<StartPageCubit,StartPageState>(builder: (context, state) {
               return IconButton(
                 onPressed: (){
                   StartPageCubit.get(context).changeIndex(1);
                 },
 
-                icon: const Icon(Icons.keyboard_arrow_left),
+                icon:  Icon(Icons.keyboard_arrow_left,color: AppProvider.get(context).isDarkModeEnabled
+                    ?null:Colors.black,),
               );
             },),
             shape: const RoundedRectangleBorder(

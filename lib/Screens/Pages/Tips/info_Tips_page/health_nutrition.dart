@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../Provider/provider.dart';
-import '../../Start Page/startpage.dart';
 import '../Tips_Screen.dart';
 
 
@@ -41,13 +40,19 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          elevation: 0,
+            backgroundColor: AppProvider.get(context).isDarkModeEnabled
+                ?null:Colors.white,
             centerTitle: true,
-            title: const Text("Tips"),
+            title:  Text("Tips",
+            style: TextStyle(color:AppProvider.get(context).isDarkModeEnabled
+                ?null:Colors.black)),
             leading: IconButton(
               onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Skin_Tips(),));
               },
-              icon: const Icon(Icons.keyboard_arrow_left,),
+              icon:  Icon(Icons.keyboard_arrow_left,color: AppProvider.get(context).isDarkModeEnabled
+                  ?null:Colors.black,),
             ),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(

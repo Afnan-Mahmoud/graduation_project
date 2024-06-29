@@ -37,17 +37,24 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    AppProvider appProvider = Provider.of<AppProvider>(context);
     return Scaffold(
         appBar: AppBar(
+          elevation: 0,
+          backgroundColor: appProvider.isDarkModeEnabled
+              ?null:Colors.white,
             centerTitle: true,
-            title: const Text("About Disease"),
+            title:  Text("About Disease",
+            style: TextStyle(color:appProvider.isDarkModeEnabled
+                ? null:Colors.black)),
             leading: IconButton(
               onPressed: (){
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) =>  StartPage()),(route) => false,);
               },
-              icon: const Icon(Icons.keyboard_arrow_left)
+              icon:  Icon(Icons.keyboard_arrow_left,color: appProvider.isDarkModeEnabled
+                  ?null:Colors.black,)
             ),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(

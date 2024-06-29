@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduation_project/Provider/provider.dart';
-import 'package:graduation_project/Screens/Pages/Profile/personalpage.dart';
-import 'package:graduation_project/Screens/Pages/Register/Login/login%20screen.dart';
 import 'package:graduation_project/Screens/Pages/Start%20Page/start_page_cubit.dart';
 import 'package:graduation_project/Utilites/colors.dart';
 

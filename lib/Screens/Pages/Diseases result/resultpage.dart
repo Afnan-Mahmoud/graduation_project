@@ -4,6 +4,8 @@ import 'package:graduation_project/Screens/Pages/Chatbot/chat.dart';
 import 'package:graduation_project/Screens/Pages/Start%20Page/start_page_cubit.dart';
 import 'dart:io';
 import '../Start Page/startpage.dart';
+import 'package:provider/provider.dart';
+import '../../../../../../Provider/provider.dart';
 
 class Result extends StatefulWidget {
   static const String routeName="Result";
@@ -20,13 +22,15 @@ class Result extends StatefulWidget {
 class _ResultState extends State<Result> {
   @override
   Widget build(BuildContext context) {
+    AppProvider appProvider = Provider.of<AppProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Result',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.transparent),
-        useMaterial3: true,
-      ),
+      theme: ThemeData.light(), // Light theme
+      darkTheme: ThemeData.dark(), // Dark theme
+      themeMode: appProvider.isDarkModeEnabled
+          ? ThemeMode.dark
+          : ThemeMode.light, // Use themeMode to switch between light and dark mode
       home: MyHomePage(
         title: 'Result',
         result: widget.result,

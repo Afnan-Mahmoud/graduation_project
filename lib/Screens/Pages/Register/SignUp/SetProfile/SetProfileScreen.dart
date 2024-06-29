@@ -120,7 +120,7 @@ class SetProfileScreen extends StatelessWidget {
                                               top: 10, bottom: 10, right: 10, left: 10
                                           ),
                                           decoration: ShapeDecoration(
-                                            color: Color(0xFF5063BF),
+                                            color: Color(0xff427D9D),
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(
                                                   20),
@@ -193,7 +193,7 @@ class SetProfileScreen extends StatelessWidget {
                                               top: 10, bottom: 10, right: 10, left: 10
                                           ),
                                           decoration: ShapeDecoration(
-                                            color: Color(0xFF5063BF),
+                                            color: Color(0xff427D9D),
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(
                                                   20),
@@ -266,7 +266,7 @@ class SetProfileScreen extends StatelessWidget {
                                               top: 10, bottom: 10, right: 10, left: 10
                                           ),
                                           decoration: ShapeDecoration(
-                                            color: const Color(0xFF5063BF),
+                                            color: const Color(0xff427D9D),
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(
                                                   20),
@@ -280,14 +280,14 @@ class SetProfileScreen extends StatelessWidget {
                                               top: 10, bottom: 10, right: 10, left: 10
                                           ),
                                           decoration: ShapeDecoration(
-                                            color: Colors.red,
+                                            color: Color(0xff427D9D),
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(
                                                   20),
                                             ),
                                           ),
                                           child: Icon(
-                                            Icons.close_rounded, color: Colors.white,size: 15,
+                                            Icons.done, color: Colors.white,size: 15,
                                           )):SizedBox(),
                                       hintText: '8456 5846 5846',
                                       hintStyle: TextStyle(

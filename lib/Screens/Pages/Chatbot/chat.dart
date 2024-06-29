@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
+import '../../../Provider/provider.dart';
 import '../Start Page/start_page_cubit.dart';
 import '../Start Page/startpage.dart';
 import 'chat_bubels.dart';
@@ -95,11 +96,12 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
-        elevation: 0,
+        backgroundColor: AppProvider.get(context).isDarkModeEnabled
+            ?null:Colors.white,
+        elevation: 1,
         flexibleSpace: SafeArea(
           child: BlocBuilder<StartPageCubit,StartPageState>(builder:  (context, state) {
             return Container(
-              color: Colors.white,
               padding: const EdgeInsets.only(right: 16),
               child: Row(
                 children: <Widget>[

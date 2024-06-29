@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppProvider with ChangeNotifier {
-  static AppProvider get(context)=>Provider.of<AppProvider>(context,listen: false);
+  static AppProvider get(context)=>Provider.of<AppProvider>(context,listen: true);
   bool _isDarkModeEnabled = false;
   bool get isDarkModeEnabled => _isDarkModeEnabled;
   AppProvider() {
